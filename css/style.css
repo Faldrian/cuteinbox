@@ -1,0 +1,25 @@
+#Postlist tr {
+    border-spacing: 0;
+}
+
+#Postlist td {
+    border-bottom: 1px solid gray;
+    border-spacing: 0;
+}
+#Postlist {
+    border-spacing: 0;
+}
+
+TABLE {
+    border-spacing: 0;
+}
+
+input[type="checkbox"] {
+    width: 50px;
+    height: 50px;
+}
+
+textarea {
+    width: 80%;
+    height: 4em;
+}

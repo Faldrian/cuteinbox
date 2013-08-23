@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>CuteInbox Administration</title>
+	
+	<script src="js/jquery-2.0.3.min.js"></script>
+	<script src="js/underscore-min.js"></script>
+	<script src="js/backbone-min.js"></script>
+	<script src="js/cuteinbox.js"></script>
+	
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<script type="text/template" id="tpl_PostlistItem">
+	<td><% if( image != 'none' ) { %><img src="<%=image%>" width="200px"/><% } %></td>
+	<td><p><b><%=title%></b><br /><%=url%></p>
+		<p><textarea><%=comment%></textarea></p></td>
+	<td><input type="checkbox" <% if( body != null ) { %>checked=checked<% } %>/></td>
+</script>
+
+<script type="text/template" id="tpl_DiasporaPost">![<%=title%>](<%=image%>)
+
+Source: [<%=title%>](<%=url%>)
+
+<%=comment%> #cuteinbox
+</script>
+
+
+<table>
+	<thead>
+		<tr>
+			<th>URL</th>
+			<th>Titel</th>
+			<th>Aktiviert?</th>
+		</tr>
+	</thead>
+	<tbody id="Postlist"></tbody>
+</table>
+
+<div id="addurls">
+<h4>URLs hinzufügen</h4>
+<textarea cols="50" rows="5"></textarea><br />
+<button>hinzufügen!</button>
+</div>
+
+</body>
+</html>
