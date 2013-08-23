@@ -149,6 +149,9 @@ $(function() {
 					App.insertmulti_progress();
 				}
 			});
+		
+		// Leer das mal wieder, nicht, dass man zuviel doppelt einfügen möchte.
+		$('#addurls textarea').val('');
 	});
 	
 	

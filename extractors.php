@@ -20,7 +20,7 @@ class ExFlickr implements iExtractor {
 		$data['title'] = $matches[1];
 		
 		// Bild extrahieren
-		preg_match('/<meta property="og:image" content="(.*?)" />/', $source, $matches);
+		preg_match('/<meta property="og:image" content="(.*?)" \/>/', $source, $matches);
 		$data['image'] = $matches[1];
 		
 		return $data;
@@ -63,7 +63,7 @@ class Ex500px implements iExtractor {
 		$data['title'] = $matches[1];
 		
 		// Bild extrahieren
-		preg_match('/<meta property="twitter:image" value="(.*?)" />/', $source, $matches);
+		preg_match('/<meta property="twitter:image" value="(.*?)" \/>/', $source, $matches);
 		$data['image'] = $matches[1];
 		
 		return $data;

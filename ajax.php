@@ -40,7 +40,13 @@ function ajax_sync() {
 				$result = Model::factory($model)->find_one($_REQUEST['content']);
 				$response = $result->as_array();
 			} else {
-				$results = Model::factory($model)->find_many();
+				// Spezialbehandlung für posts... nur die holen, die nicht gelesen sind.
+				if($model == 'Post') {
+					$results = Model::factory($model)->where_null('posted')->find_many();
+				} else {			
+					$results = Model::factory($model)->find_many();
+				}
+				
 				$response = array();
 				if(count($results) > 0) {
 					if(is_array($results[0])) {
@@ -98,9 +104,19 @@ function ajax_insertmulti() {
 	
 	// Füge alle neuen URLs ein
 	foreach($urls as $url) {
+		if(trim($url) == '') {
+			continue; // Leere URLs überspringen.
+		}
+		
+		// Checken, ob es diese URL schon im System gibt, dann überspringen
+		$duplicateCheck = Model::factory('Post')->where('url', $url)->count();
+		if($duplicateCheck > 0) {
+			continue;
+		}
+		
 		$entry = Model::factory('Post')->create(array(
 			'url' => $url,
-			'created' => date('Y-m-d h:i:s')
+			'created' => date('Y-m-d H:i:s')
 			));
 		$entry->save();
 	}
@@ -124,7 +140,14 @@ function ajax_insertmulti_progess() {
 	$data = array();
 	foreach($extractor as $ex) {
 		if($ex->is_able($entry->url)) {
-			$source = file_get_contents($entry->url);
+			$source = @file_get_contents($entry->url);
+			
+			if($source === false) {
+				$entry->posted = date('Y-m-d H:i:s');
+				$entry->title = "Fehlerhaft!";
+				break; // Kannst aufhören, das wird hier nichts mehr.
+			}
+			
 			$data = $ex->extract($source);
 		}
 	}
