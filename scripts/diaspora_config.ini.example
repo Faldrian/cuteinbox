@@ -1,0 +1,10 @@
+[Diaspora]
+pod      = https://pod.example.com
+username = Username
+password = Password
+
+[MySQL]
+server   = localhost
+database = Database
+username = Username
+password = Password
