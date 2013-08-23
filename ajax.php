@@ -8,6 +8,8 @@ require('models.php');
 
 // Config
 require('config.php');
+// Für UTF-8
+ORM::configure('driver_options', array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
 
 // Extraktoren
 $extractor = array();

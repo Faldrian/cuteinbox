@@ -17,6 +17,7 @@ cnx = mysql.connector.connect(
 	password = config['MySQL']['password'])
 cursor = cnx.cursor()
 
+cursor.execute("SET NAMES utf8");
 cursor.execute("SELECT * FROM post WHERE body IS NOT NULL AND posted IS NULL LIMIT 1")
 row = cursor.fetchone()
 
