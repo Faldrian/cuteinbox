@@ -13,7 +13,17 @@ class ExFlickr implements iExtractor {
 	}
 	
 	function extract($source) {
-	
+		$data = array();
+		
+		// Titel extrahieren
+		preg_match('/<title>(.*?)<\/title>/', $source, $matches);
+		$data['title'] = $matches[1];
+		
+		// Bild extrahieren
+		preg_match('/<meta property="og:image" content="(.*?)" />/', $source, $matches);
+		$data['image'] = $matches[1];
+		
+		return $data;
 	}
 }
 $extractor[] = new ExFlickr();
@@ -46,7 +56,17 @@ class Ex500px implements iExtractor {
 	}
 	
 	function extract($source) {
-	
+		$data = array();
+		
+		// Titel extrahieren
+		preg_match('/<title>(.*?)<\/title>/', $source, $matches);
+		$data['title'] = $matches[1];
+		
+		// Bild extrahieren
+		preg_match('/<meta property="twitter:image" value="(.*?)" />/', $source, $matches);
+		$data['image'] = $matches[1];
+		
+		return $data;
 	}
 }
 $extractor[] = new Ex500px();
