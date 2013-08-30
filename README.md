@@ -11,7 +11,7 @@ Ein Diaspora-Bot, der automatisch zu bestimmten Uhrzeiten Beiträge posted. Grun
 Installation / Abhängigkeiten
 ------
 * Python3
-* [diaspy](https://github.com/marekjm/diaspy)
+* [diaspy](https://github.com/Javafant/diaspy)
 * Eine MySQL-Datenbank
 * PHP >= 5.3
 * Einen Webserver, auf dem das PHP-Zeug ausgeführt wird
@@ -22,4 +22,6 @@ Es gibt 2 Konfigurationsdateien:
 1. `config.php` (einfach `config.php.example` kopieren und anpassen), in der die Informationen für die PHP-Anbindung an das MySQL stehen
 2. `scripts/diaspora_config.ini` (genauso wie bei 1. verfahren), dort wird der Zugang zum Diaspora-Account und der Zugang zur MySQL-Datenbank für den Cronjob gespeichert.
 
-Bei meiner Instanz habe ich mit [virtualenv](https://pypi.python.org/pypi/virtualenv) gearbeitet um `diaspy` via `pip` zu installieren und das alles als einfacher Benutzer machen zu können. Wenn man direkt die benötigten Pakete installieren kann, kann man die entsprechende "source"-Zeile aus der `cronjob.sh` weglassen.
+Bei meiner Instanz habe ich mit [virtualenv](https://pypi.python.org/pypi/virtualenv) gearbeitet. Dabei hab ich dann einfach das Repository von `diaspy` ins `lib/python3.2/site-packages/` reingeclont. Hässlich, aber effektiv. ;)
+
+Wenn man direkt die benötigten Pakete systemweit installieren kann, kann man die entsprechende "source"-Zeile aus der `cronjob.sh` weglassen.
