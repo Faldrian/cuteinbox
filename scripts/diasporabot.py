@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf8 -*-
 
-import diaspy
+import diaspy_simple.client as diaspy #Javafants Spezialversion, https://github.com/Faldrian/diaspy_simple
 import configparser
 import datetime
 import mysql.connector
@@ -30,14 +30,8 @@ post_id = row[0]
 postbody = row[5]
 
 # Post absetzen
-c = diaspy.connection.Connection(
-	pod = config['Diaspora']['pod'],
-	username = config['Diaspora']['username'], 
-	password = config['Diaspora']['password'])
-c.login()
-
-stream = diaspy.streams.Stream(c)
-stream.post(postbody)
+c = diaspy.Client(config['Diaspora']['pod'], config['Diaspora']['username'], config['Diaspora']['password'])
+c.post(postbody)
 
 # Post als geposted markieren in der Datenbank
 cursor.execute("UPDATE post SET posted = NOW() WHERE id = " + str(post_id))
