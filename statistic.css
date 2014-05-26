@@ -1,0 +1,11 @@
+thead td {
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #e0ffe0;
+}
+
+td:nth-child(2) {
+    text-align: center;
+}
